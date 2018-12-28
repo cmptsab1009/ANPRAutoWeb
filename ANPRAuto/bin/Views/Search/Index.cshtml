@@ -1,0 +1,470 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="main-container">
+    <div class="bottom-bar search-sec">
+        <div class="top-head"> <i class="fa fa-search"></i>Vehicle Search </div>
+        <div class="inner-content">
+            <div class="license-detail">
+                <form class="form-control">
+                    <label>License Plate</label><input class="input-group" type="search" /> <a data-toggle="modal" data-target="#modal-default" class="btn more-btn">More</a> <a data-toggle="modal" data-target="#modal-img" class="btn btn-danger save-btn pull-left"><i class="fa fa-save"></i></a>
+                    <label>Status</label>
+                    @Html.DropDownList("StatusId", EnumHelper.GetSelectList(typeof(VeichleOCR.Modal.Enumerations.OCRStatus)), new { @class = "select-top" })
+                    @*<select class="select-top"><option>1</option></select>*@
+                </form>
+            </div>
+            <div class="search-result">
+                <div class="result-top">
+                    Vehicle Search Result
+                </div>
+                <div class="box-body">
+                    <table id="tblVeichle" class="table table-bordered table-hover">
+                        @*Data will be loaded dynamically*@
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-details">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <button type="button" class="print">
+                    <i class="fa fa-print"></i>
+                </button>
+
+                <h4 class="modal-title">Details</h4>
+            </div>
+            <div class="modal-body">
+                <table width="100%" class="table-bordered table-striped detail-table">
+                    <tbody>
+                        <tr>
+                            <td><strong>Date / Time</strong></td>
+                            <td><span>11-12-2018 11:52:02</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Lane</strong></td>
+                            <td><span>Gate 2 Exit Lane</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Plate Number</strong></td>
+                            <td><span>54482</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Country</strong></td>
+                            <td><span>Dubai</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Color</strong></td>
+                            <td>
+                                <span>
+                                    <select class="green-back select-style">
+                                        <option>Green</option>
+                                        <option>Blue2</option>
+                                    </select>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bkg Color</strong></td>
+                            <td>
+                                <span>
+                                    <select class="green-back select-style">
+                                        <option>Green</option>
+                                        <option>Blue2</option>
+                                    </select>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Category</strong></td>
+                            <td><span>Private</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Type</strong></td>
+                            <td><span>Short</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>User</strong></td>
+                            <td><span>Admin</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Images</strong></td>
+                            <td>
+                                <table class="image-table" width="100%">
+                                    <tr>
+                                        <td><span class="blue-text"><strong>Time:</strong> 12:33:08</span></td>
+                                        <td><span class="blue-text"><strong>Category:</strong> LPR</span></td>
+                                        <td><span class="blue-text"><strong>Camera:</strong> Gate 2 Exit Camera</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="blue-text"><strong>Name:</strong> LPR1</span></td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3"><img class="back-camera" src="images/back-camera.jpg" /></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Search</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-style" role="form">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">License Plate</label>
+                            <input type="email" class="form-control" id="licenseId" placeholder="License No.">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Country</label>
+                            @Html.DropDownList("Country", @ANPRAuto.Models.Helper.GetCountryList(), "All", new { @class = "form-control select2" })
+                            @*<select class="form-control select2" style="width: 100%;">
+                                    <option selected="selected">Alabama</option>
+                                    <option>Alaska</option>
+                                    <option>California</option>
+                                    <option>Delaware</option>
+                                    <option>Tennessee</option>
+                                    <option>Texas</option>
+                                    <option>Washington</option>
+                                </select>*@
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>State</label>
+                            <select id="State" class="form-control select2" disabled="disabled" style="width: 100%;">
+                                <option selected="selected">All</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Form Date:</label>
+
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" class="form-control pull-right datepicker" id="Fromdatepicker">
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="bootstrap-timepicker">
+                            <div class="form-group">
+                                <label>From Time : </label>
+
+                                <div class="input-group">
+                                    <input type="text" class="form-control timepicker">
+
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-clock-o"></i>
+                                    </div>
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+                            <!-- /.form group -->
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4"></div>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>To Date:</label>
+
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" class="form-control pull-right datepicker" id="Todatepicker">
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="bootstrap-timepicker">
+                            <div class="form-group">
+                                <label>To Time : </label>
+
+                                <div class="input-group">
+                                    <input type="text" class="form-control timepicker">
+
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-clock-o"></i>
+                                    </div>
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+                            <!-- /.form group -->
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4"></div>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Lane</label>
+                            @Html.DropDownList("Lane", @ANPRAuto.Models.Helper.GetLaneList(), new { @class = "form-control select2" })
+                            @*<select class="form-control select2" style="width: 100%;">
+                                    <option selected="selected">1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </select>*@
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Color</label>
+                            @Html.DropDownList("Colour", EnumHelper.GetSelectList(typeof(VeichleOCR.Modal.Enumerations.BackgroundColor)), new { @class = "form-control select2" })
+                            @*<select class="form-control select2" style="width: 100%;">
+                                    <option selected="selected">Any</option>
+                                    <option>White</option>
+                                    <option>Blue</option>
+                                </select>*@
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Bkg Color</label>
+                            @Html.DropDownList("BackGroundColour", EnumHelper.GetSelectList(typeof(VeichleOCR.Modal.Enumerations.BackgroundColor)), new { @class = "form-control select2" })
+                            @*<select class="form-control select2" style="width: 100%;">
+                                    <option selected="selected">Any</option>
+                                    <option>White</option>
+                                    <option>Blue</option>
+                                </select>*@
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Category</label>
+                            @Html.DropDownList("Category", EnumHelper.GetSelectList(typeof(VeichleOCR.Modal.Enumerations.Category)), new { @class = "form-control select2" })
+                            @*<select class="form-control select2" style="width: 100%;">
+                                    <option selected="selected">Any</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                </select>*@
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Type</label>
+                            @Html.DropDownList("PlateSize", EnumHelper.GetSelectList(typeof(VeichleOCR.Modal.Enumerations.PlateSize)), new { @class = "form-control select2" })
+                            @* <select class="form-control select2" style="width: 100%;">
+                                    <option selected="selected">Any</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                </select>*@
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="modal-img">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-body">
+                <img id="popUpImg" class="img-responsive" src="images/5brtdw48hn8y.jpg" />
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+<!-- bootstrap datepicker -->
+<script src="@Url.Content("~/Scripts/bootstrap-datepicker.min.js")"></script>
+<link href="~/Content/bootstrap-timepicker.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-timepicker.js"></script>
+
+<script>
+    $(function () {
+        //$('#example1').DataTable()
+        var assetListVM;
+        $('#example2').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false
+        })
+        //-------------------------------------Bind Data Table here Server side
+        assetListVM = {
+            dt: null,
+
+            init: function () {
+                dt = $('#tblVeichle').DataTable({
+                    "serverSide": true,
+                    "processing": true,
+                    "language": {
+                        processing: "<img src='/images/datatable-loader.gif'>"
+                    },
+
+                    "scrollY": '100vh',
+                    "scrollCollapse": true,
+
+
+                    "ajax": {
+                        "url": "/Search/GetVeichleInfo"//"@Url.Action("GetVeichleInfo", "Search")"
+                    },
+                    "columns": [
+
+                        //{
+                        //    "title": "ProfilePhoto", "data": "ProfilePhoto", render: function (ProfilePhoto, type, user) {
+
+                        //        ProfilePhoto = ProfilePhoto.substring(1, ProfilePhoto.length);
+                        //        return `<div><img style="width: 100px; height: 100px;" src="${ProfilePhoto}"  /></div>`;
+                        //    }
+                        //},
+
+                        { "title": "Date", "data": "Date", "searchable": true },
+                        { "title": "Time", "data": "Time", "searchable": true },
+                        { "title": "Lane", "data": "Lane", "searchable": true },
+                        { "title": "Plate No.", "data": "PlateNo", "searchable": true },
+                        { "title": "Country", "data": "CountryCode", "searchable": true },
+                        { "title": "Status", "data": "Status", "searchable": true },
+                        {
+                            "title": "Color", "data": "PlateColor", render: function (FontColor, type, user) {
+
+                                return `<div style = "color:${user.BackgroundColor} ;background: ${FontColor};">${FontColor}</div>`;
+                            }
+                        },
+                        {
+                            "title": "Bkg Color", "data": "BackgroundColor", render: function (BackgroundColor, type, user) {
+
+                                return `<div style = "color:${user.FontColor}; background: ${BackgroundColor};">${BackgroundColor}</div>`;
+                            }
+                        },
+                        { "title": "Category", "data": "Category", "CountryCode": true },
+                        { "title": "Type", "data": "type", "searchable": true },
+                        {
+                            "title": "License Plate", "data": "ImagePath", render: function (ImagePath, type, user) {
+
+                                //CoverPhoto = CoverPhoto.substring(1, CoverPhoto.length);
+                                return `<img src="${user.ImagePath}"  />`;
+                            }
+                        },
+                        {
+                            "title": "Details", "data": "", render: function (ImagePath, type, user) {
+
+                                return `<a href="#" data-toggle="modal" data-target="#modal-default"><i class="fa fa-search"></i></a> <a href="#"><i class="fa fa-save"></i></a> <a href="#"><i class="fa fa-download"></i></a>`;
+                            }
+                        },
+                    ],
+                    "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                });
+            }
+        }
+
+        assetListVM.init();
+        //---------------------------------------------------------------------
+        //Date picker
+        $('.datepicker').datepicker({
+            autoclose: true
+        })
+        //Timepicker
+        $('.timepicker').timepicker({
+            showInputs: false
+        })
+
+        $("#Country").change(function () {
+            var CIds = $("#Country option:selected").text();
+            $("#State option").remove();
+            $('#State').append($("<option>All</option>"));
+            if (CIds == "UAE") {
+                $('#State').removeAttr('disabled');
+                BindState();
+            }
+            else {
+
+                $('#State').attr('disabled', true);
+            }
+        });
+
+        function BindState()
+        {
+
+            $.ajax({
+
+                type: "POST",
+
+                url: "@Url.Action("GetStateList","Home")",
+
+                data: "{'CId': '" + $("#Country").val() + "'}",
+
+                dataType: "json",
+
+                contentType: "application/json; charset=utf-8",
+
+                success: function (data) {
+
+                    var jsondata = JSON.parse(data);
+
+                    $.each(jsondata, function (key, value) {
+
+                        $('#State').append($("<option></option>")
+
+                            .val(value.Id).html(value.Name));
+
+                    });
+
+                },
+
+                error: function () {
+
+                    alert("error");
+
+                }
+
+            });
+
+        }
+    })
+</script>

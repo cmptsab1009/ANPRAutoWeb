@@ -1,0 +1,168 @@
+﻿@model ANPRAuto.Models.CamsConfig
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<script src="~/Scripts/Trigger.js"></script>
+<div class="main-container">
+    <ul class="video-section">
+        @if (!string.IsNullOrEmpty(@Model.cam1Name))
+        {
+            <li class="inner-video">
+                <div class="top-head"> <i class="fa fa-video-camera"></i> @Model.cam1Name - Trigger <span id="cam1Trigger"></span> </div>
+                <span class="main-video">
+                    <img id="cam1IP" camName="@Model.cam1Name" onlyIP="@Model.cam1IPAdd" src="@Model.cam1IP">
+                </span>
+            </li>
+        }
+        @if (!string.IsNullOrEmpty(@Model.cam2Name))
+        {
+            <li class="inner-video">
+                <div class="top-head"> <i class="fa fa-video-camera"></i> @Model.cam2Name - Trigger <span id="cam2Trigger"></span> </div>
+                <span class="main-video"> <img id="cam2IP" camName="@Model.cam2Name" onlyIP="@Model.cam2IPAdd" src="@Model.cam2IP" /> </span>
+            </li>
+        }
+        @*<li class="inner-video">
+                <div class="top-head"> <i class="fa fa-video-camera"></i> Camera </div>
+                <span class="main-video"> <img src="/images/5brtdw48hn8y.jpg" /> </span>
+            </li>
+            <li class="inner-video">
+                <div class="top-head"> <i class="fa fa-video-camera"></i> Camera </div>
+                <span class="main-video"> <img src="/images/5brtdw48hn8y.jpg" /> </span>
+            </li>*@
+        @if (!string.IsNullOrEmpty(@Model.cam3Name))
+        {
+            <li class="inner-video">
+                <div class="top-head"> <i class="fa fa-video-camera"></i> @Model.cam3Name - Trigger <span id="cam3Trigger"></span> </div>
+                <span class="main-video"> <img id="cam3IP" camName="@Model.cam3Name" onlyIP="@Model.cam3IPAdd" src="@Model.cam3IP" /> </span>
+            </li>
+        }
+        @if (!string.IsNullOrEmpty(@Model.cam4Name))
+        {
+            <li class="inner-video">
+                <div class="top-head"> <i class="fa fa-video-camera"></i> @Model.cam4Name - Trigger <span id="cam4Trigger"></span> </div>
+                <span class="main-video"> <img id="cam4IP" camName="@Model.cam4Name" onlyIP="@Model.cam4IPAdd" src="@Model.cam4IP" /> </span>
+            </li>
+        }
+    </ul>
+    <div class="bottom-bar">
+        <div class="top-head"> <i class="fa fa-video-camera"></i>Vehicle Queue </div>
+        <div class="vehicle-des">
+            <table id="tblQueue" class="table-bordered table-striped" cellpadding="0" cellspacing="0" border="1" width="100%">
+                @* <tr>
+                        <td>11:58</td>
+                        <td>Dubai</td>
+                        <td>
+                            <select class="blue-back select-style">
+                                <option>Blue</option>
+                                <option>Blue2</option>
+                            </select>
+                        </td>
+                        <td>Gate 2 Entry </td>
+                        <td>Private Shot</td>
+                        <td>
+                            <ul class="private-shot">
+                                <li><img id="cam1SS" src="" /></li>
+                                <li><img id="cam2SS" src="" /></li>
+                                <li><img id="cam3SS" src="" /></li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>11:58</td>
+                        <td>Dubai</td>
+                        <td>
+                            <select class="green-back select-style">
+                                <option>Blue</option>
+                                <option>Blue2</option>
+                            </select>
+                        </td>
+                        <td>Gate 2 Entry </td>
+                        <td>Private Shot</td>
+                        <td>
+                            <ul class="private-shot">
+                                <li><img id="cam4SS" src="images/images.jpg" /></li>
+                                @*<li><img src="images/images.jpg" /></li>
+                                <li><img src="images/images.jpg" /></li>
+                            </ul>
+                            </td>
+                            </tr>
+                            <tr>
+                                <td>11:58</td>
+                                <td>Dubai</td>
+                                <td>
+                                    <select class="blue-back select-style">
+                                        <option>Blue</option>
+                                        <option>Blue2</option>
+                                    </select>
+                                </td>
+                                <td>Gate 2 Entry </td>
+                                <td>Private Shot</td>
+                                <td>
+                                    <ul class="private-shot">
+                                        <li><img src="images/images.jpg" /></li>
+                                        <li><img src="images/images.jpg" /></li>
+                                        <li><img src="images/images.jpg" /></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>11:58</td>
+                                <td>Dubai</td>
+                                <td>
+                                    <select class="white-back select-style">
+                                        <option>Blue</option>
+                                        <option>Blue2</option>
+                                    </select>
+                                </td>
+                                <td>Gate 2 Entry </td>
+                                <td>Private Shot</td>
+                                <td>
+                                    <ul class="private-shot">
+                                        <li><img src="images/images.jpg" /></li>
+                                        <li><img src="images/images.jpg" /></li>
+                                        <li><img src="images/images.jpg" /></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>11:58</td>
+                                <td>Dubai</td>
+                                <td>
+                                    <select class="blue-back select-style">
+                                        <option>Blue</option>
+                                        <option>Blue2</option>
+                                    </select>
+                                </td>
+                                <td>Gate 2 Entry </td>
+                                <td>Private Shot</td>
+                                <td>
+                                    <ul class="private-shot">
+                                        <li><img src="images/images.jpg" /></li>
+                                        <li><img src="images/images.jpg" /></li>
+                                        <li><img src="images/images.jpg" /></li>
+                                    </ul>
+                                </td>
+                            </tr>*@
+
+            </table>
+        </div>
+    </div>
+
+    
+</div>
+<div class="modal fade" id="modal-img">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-body">
+                <img id="popUpImg" class="img-responsive" src="images/5brtdw48hn8y.jpg" />
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
