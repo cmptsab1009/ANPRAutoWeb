@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbANPRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblANPRData">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Time" Type="Time" Precision="7" />
+    <Property Name="Lane" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PlateNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CountryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PlateColour" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BackGroundColour" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PlateSize" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PlateImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="CImage" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="x1" Type="Int32" />
+    <Property Name="x2" Type="Int32" />
+    <Property Name="x3" Type="Int32" />
+    <Property Name="x4" Type="Int32" />
+    <Property Name="y1" Type="Int32" />
+    <Property Name="y2" Type="Int32" />
+    <Property Name="y3" Type="Int32" />
+    <Property Name="y4" Type="Int32" />
+    <Property Name="NumberPlate" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Image1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Image2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Image3" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Video" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblCountry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblstates" Relationship="Self.FK_tblstate_tblCountry" FromRole="tblCountries" ToRole="tblstates" />
+  </EntityType>
+  <EntityType Name="tblstate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryId" Type="Int32" Nullable="false" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tblCountry" Relationship="Self.FK_tblstate_tblCountry" FromRole="tblstates" ToRole="tblCountries" />
+  </EntityType>
+  <Association Name="FK_tblstate_tblCountry">
+    <End Role="tblCountries" Type="Self.tblCountry" Multiplicity="1" />
+    <End Role="tblstates" Type="Self.tblstate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCountries">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblstates">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="tblANPRDatas" EntityType="Self.tblANPRData" />
+    <EntitySet Name="tblCountries" EntityType="Self.tblCountry" />
+    <EntitySet Name="tblstates" EntityType="Self.tblstate" />
+    <AssociationSet Name="FK_tblstate_tblCountry" Association="Self.FK_tblstate_tblCountry">
+      <End Role="tblCountries" EntitySet="tblCountries" />
+      <End Role="tblstates" EntitySet="tblstates" />
+    </AssociationSet>
+    <FunctionImport Name="getAllANPRData" />
+    <FunctionImport Name="getAllANPRDataByDate">
+      <Parameter Name="fromDate" Mode="In" Type="String" />
+      <Parameter Name="toDate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getAllANPRDataByFilter">
+      <Parameter Name="license" Mode="In" Type="String" />
+      <Parameter Name="dtfrom" Mode="In" Type="String" />
+      <Parameter Name="dtTo" Mode="In" Type="String" />
+      <Parameter Name="Lane" Mode="In" Type="String" />
+      <Parameter Name="category" Mode="In" Type="String" />
+      <Parameter Name="country" Mode="In" Type="String" />
+      <Parameter Name="state" Mode="In" Type="String" />
+      <Parameter Name="foreColor" Mode="In" Type="String" />
+      <Parameter Name="backColor" Mode="In" Type="String" />
+      <Parameter Name="type" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetCountry" ReturnType="Collection(dbANPRModel.GetCountry_Result)" />
+    <FunctionImport Name="getCountryByState" ReturnType="Collection(String)">
+      <Parameter Name="state" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStateById" ReturnType="Collection(dbANPRModel.GetStateById_Result)">
+      <Parameter Name="cId" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="GetCountry_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="CountryName" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetStateById_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="State" Nullable="false" MaxLength="50" />
+  </ComplexType>
+</Schema>

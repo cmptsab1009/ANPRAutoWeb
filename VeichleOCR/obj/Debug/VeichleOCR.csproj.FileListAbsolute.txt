@@ -1,0 +1,9 @@
+E:\D Drive\ANPR\ANPRAuto\VeichleOCR\bin\Debug\VeichleOCR.dll
+E:\D Drive\ANPR\ANPRAuto\VeichleOCR\bin\Debug\VeichleOCR.pdb
+E:\D Drive\ANPR\ANPRAuto\VeichleOCR\bin\Debug\cmanprdotnet8.dll
+E:\D Drive\ANPR\ANPRAuto\VeichleOCR\bin\Debug\gxdotnet8.dll
+E:\D Drive\ANPR\ANPRAuto\VeichleOCR\obj\Debug\VeichleOCR.csprojAssemblyReference.cache
+E:\D Drive\ANPR\ANPRAuto\VeichleOCR\obj\Debug\VeichleOCR.csproj.CoreCompileInputs.cache
+E:\D Drive\ANPR\ANPRAuto\VeichleOCR\obj\Debug\VeichleOCR.csproj.CopyComplete
+E:\D Drive\ANPR\ANPRAuto\VeichleOCR\obj\Debug\VeichleOCR.dll
+E:\D Drive\ANPR\ANPRAuto\VeichleOCR\obj\Debug\VeichleOCR.pdb

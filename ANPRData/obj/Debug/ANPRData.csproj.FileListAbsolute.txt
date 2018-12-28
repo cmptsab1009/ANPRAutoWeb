@@ -1,0 +1,12 @@
+E:\D Drive\ANPR\ANPRAuto\ANPRData\bin\Debug\ANPRData.dll.config
+E:\D Drive\ANPR\ANPRAuto\ANPRData\bin\Debug\ANPRData.dll
+E:\D Drive\ANPR\ANPRAuto\ANPRData\bin\Debug\ANPRData.pdb
+E:\D Drive\ANPR\ANPRAuto\ANPRData\bin\Debug\EntityFramework.dll
+E:\D Drive\ANPR\ANPRAuto\ANPRData\bin\Debug\EntityFramework.SqlServer.dll
+E:\D Drive\ANPR\ANPRAuto\ANPRData\bin\Debug\EntityFramework.xml
+E:\D Drive\ANPR\ANPRAuto\ANPRData\bin\Debug\EntityFramework.SqlServer.xml
+E:\D Drive\ANPR\ANPRAuto\ANPRData\obj\Debug\ANPRData.csprojAssemblyReference.cache
+E:\D Drive\ANPR\ANPRAuto\ANPRData\obj\Debug\ANPRData.csproj.CoreCompileInputs.cache
+E:\D Drive\ANPR\ANPRAuto\ANPRData\obj\Debug\ANPRData.csproj.CopyComplete
+E:\D Drive\ANPR\ANPRAuto\ANPRData\obj\Debug\ANPRData.dll
+E:\D Drive\ANPR\ANPRAuto\ANPRData\obj\Debug\ANPRData.pdb

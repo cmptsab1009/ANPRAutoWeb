@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbANPRModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="dbANPRModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblANPRDatas">
+      <EntityTypeMapping TypeName="dbANPRModel.tblANPRData">
+        <MappingFragment StoreEntitySet="tblANPRDatas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Lane" ColumnName="Lane" />
+          <ScalarProperty Name="PlateNo" ColumnName="PlateNo" />
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="PlateColour" ColumnName="PlateColour" />
+          <ScalarProperty Name="BackGroundColour" ColumnName="BackGroundColour" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="PlateSize" ColumnName="PlateSize" />
+          <ScalarProperty Name="PlateImage" ColumnName="PlateImage" />
+          <ScalarProperty Name="CImage" ColumnName="CImage" />
+          <ScalarProperty Name="x1" ColumnName="x1" />
+          <ScalarProperty Name="x2" ColumnName="x2" />
+          <ScalarProperty Name="x3" ColumnName="x3" />
+          <ScalarProperty Name="x4" ColumnName="x4" />
+          <ScalarProperty Name="y1" ColumnName="y1" />
+          <ScalarProperty Name="y2" ColumnName="y2" />
+          <ScalarProperty Name="y3" ColumnName="y3" />
+          <ScalarProperty Name="y4" ColumnName="y4" />
+          <ScalarProperty Name="NumberPlate" ColumnName="NumberPlate" />
+          <ScalarProperty Name="Image1" ColumnName="Image1" />
+          <ScalarProperty Name="Image2" ColumnName="Image2" />
+          <ScalarProperty Name="Image3" ColumnName="Image3" />
+          <ScalarProperty Name="Video" ColumnName="Video" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCountries">
+      <EntityTypeMapping TypeName="dbANPRModel.tblCountry">
+        <MappingFragment StoreEntitySet="tblCountries">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblstates">
+      <EntityTypeMapping TypeName="dbANPRModel.tblstate">
+        <MappingFragment StoreEntitySet="tblstates">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="getAllANPRData" FunctionName="dbANPRModel.Store.getAllANPRData" />
+    <FunctionImportMapping FunctionImportName="getAllANPRDataByDate" FunctionName="dbANPRModel.Store.getAllANPRDataByDate" />
+    <FunctionImportMapping FunctionImportName="getAllANPRDataByFilter" FunctionName="dbANPRModel.Store.getAllANPRDataByFilter" />
+    <FunctionImportMapping FunctionImportName="GetCountry" FunctionName="dbANPRModel.Store.GetCountry">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbANPRModel.GetCountry_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getCountryByState" FunctionName="dbANPRModel.Store.getCountryByState" />
+    <FunctionImportMapping FunctionImportName="GetStateById" FunctionName="dbANPRModel.Store.GetStateById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbANPRModel.GetStateById_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

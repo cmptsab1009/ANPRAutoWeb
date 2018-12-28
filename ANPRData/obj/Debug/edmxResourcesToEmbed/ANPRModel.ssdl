@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbANPRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tblANPRDatas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Time" Type="time" Precision="7" />
+    <Property Name="Lane" Type="varchar" MaxLength="50" />
+    <Property Name="PlateNo" Type="varchar" MaxLength="50" />
+    <Property Name="CountryCode" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+    <Property Name="PlateColour" Type="varchar" MaxLength="50" />
+    <Property Name="BackGroundColour" Type="varchar" MaxLength="50" />
+    <Property Name="Category" Type="varchar" MaxLength="50" />
+    <Property Name="PlateSize" Type="varchar" MaxLength="50" />
+    <Property Name="PlateImage" Type="varbinary(max)" />
+    <Property Name="CImage" Type="varchar" MaxLength="150" />
+    <Property Name="x1" Type="int" />
+    <Property Name="x2" Type="int" />
+    <Property Name="x3" Type="int" />
+    <Property Name="x4" Type="int" />
+    <Property Name="y1" Type="int" />
+    <Property Name="y2" Type="int" />
+    <Property Name="y3" Type="int" />
+    <Property Name="y4" Type="int" />
+    <Property Name="NumberPlate" Type="varbinary(max)" />
+    <Property Name="Image1" Type="varchar" MaxLength="150" />
+    <Property Name="Image2" Type="varchar" MaxLength="150" />
+    <Property Name="Image3" Type="varchar" MaxLength="150" />
+    <Property Name="Video" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="tblCountries">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblstates">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryId" Type="int" Nullable="false" />
+    <Property Name="State" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tblstate_tblCountry">
+    <End Role="tblCountries" Type="Self.tblCountries" Multiplicity="1" />
+    <End Role="tblstates" Type="Self.tblstates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCountries">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblstates">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="getAllANPRData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="getAllANPRDataByDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromDate" Type="varchar" Mode="In" />
+    <Parameter Name="toDate" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="getAllANPRDataByFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="license" Type="varchar" Mode="In" />
+    <Parameter Name="dtfrom" Type="varchar" Mode="In" />
+    <Parameter Name="dtTo" Type="varchar" Mode="In" />
+    <Parameter Name="Lane" Type="varchar" Mode="In" />
+    <Parameter Name="category" Type="varchar" Mode="In" />
+    <Parameter Name="country" Type="varchar" Mode="In" />
+    <Parameter Name="state" Type="varchar" Mode="In" />
+    <Parameter Name="foreColor" Type="varchar" Mode="In" />
+    <Parameter Name="backColor" Type="varchar" Mode="In" />
+    <Parameter Name="type" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GetCountry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="getCountryByState" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="state" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GetStateById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cId" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="dbANPRModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblANPRDatas" EntityType="Self.tblANPRDatas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCountries" EntityType="Self.tblCountries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblstates" EntityType="Self.tblstates" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tblstate_tblCountry" Association="Self.FK_tblstate_tblCountry">
+      <End Role="tblCountries" EntitySet="tblCountries" />
+      <End Role="tblstates" EntitySet="tblstates" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
